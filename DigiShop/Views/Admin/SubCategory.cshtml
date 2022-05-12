@@ -1,0 +1,7 @@
+﻿@model List<DigiShop.CoreBussiness.EfCoreDomains.StoreCategories.StoreCategory>
+
+@{
+    Layout = "ManualPannel";
+}
+
+@await Component.InvokeAsync("SubCategoryComponent",Model)

@@ -1,0 +1,49 @@
+﻿@model DigiShop.ViewModels.Sellers.ActivatePanelViewModel
+@{
+    Layout = "ManualPannel";
+}
+<link rel="stylesheet" href="~/css/Account.css" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+@{
+    if (Model!= null && !String.IsNullOrEmpty(Model.Message) && Model.IsCompleted)
+    {
+        <span class="alert alert-success hide" style="margin-left: 95px;margin-top: 40px">@Model.Message</span>
+    }
+    else if(Model != null && !String.IsNullOrEmpty(Model.Message))
+    {
+        <span class="alert alert-danger hide" style="margin-left: 95px;margin-top: 40px">@Model.Message</span>
+    }
+}
+
+<script>
+  setTimeout(function() {
+     $(".hide").fadeOut();
+  },4000)
+</script>
+
+<body style="background-color: white">
+
+<div class="card">
+    <div class="card-header card-info" style="background-color: white">
+        <button id="dashboard" style="border-radius: 10px" class="bg bg-warning btn ">داشبورد</button>
+        <script>
+                       document.getElementById("dashboard").addEventListener("click",function() {
+                         history.go(-1)
+                       })
+                 
+            </script>
+        <h2>
+            <p style="color: orangered;text-align: center">فعال سازی پنل فروشنده</p>
+        </h2>
+    </div>
+
+    <div class="card-body">
+        <form method="post" asp-action="ActivateSellerPanel" asp-controller="Seller">
+            <div class="col-12" style="text-align: center">
+                <button type="submit" style="border-radius: 15px" class="btn btn-info" name="Method" value="mobile">فعال سازی موبایل</button>
+                <button type="submit" style="border-radius: 15px" class="btn btn-info" name="Method" value="email">فعال سازی ایمیل</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>

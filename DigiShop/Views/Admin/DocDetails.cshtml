@@ -1,0 +1,35 @@
+﻿@model DigiShop.CoreBussiness.EfCoreDomains.Documents.Document
+
+<div class="card">
+    <div class="card-header card-info">
+        <h4>مشاهده جزئیات مدارک ارسالی   (@Model.User.Phonenumber)</h4>
+    </div>
+    <div class="card-body">
+        <form method="post" asp-action="DocDetails" asp-controller="Admin" >
+            <input type="hidden" asp-for="id"/>
+            <div class="col-12">
+                <label>کد ملی</label>
+                <input type="text" disabled="" class="form-control disabled" asp-for="NationalCode"/>
+            </div>
+            <div class="col-12">
+                <label>آدرس</label>
+                <input type="text" disabled="" class="form-control disabled" asp-for="Address"/>
+            </div>
+
+            <div class="col-12">
+                <label> شماره منزل</label>
+                <input type="text" disabled="" class="form-control disabled" asp-for="Homephone"/>
+            </div>
+
+            <div class="col-12">
+                <label>عکس کارت ملی</label>
+                @await Component.InvokeAsync("ImageDocComponent", new { id = Model.id })
+            </div>
+            
+            <div class="col-12">
+                <button type="submit" class="btn btn-danger" name="action" value="reject">رد کردن</button>
+                <button type="submit" class="btn btn-success" name="action" value="confirm">تایید</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@using DigiShop.CoreBussiness.EfCoreDomains.Users
+@using DigiShop.CoreBussiness.EfCoreDomains.Stores
+@model List<DigiShop.CoreBussiness.EfCoreDomains.Stores.Store>
+
+<table class="table table-bordered table-hover   table-dark" id="mytable">
+    <thead>
+    <tr>
+        
+        <th>صاحب فروشگاه</th>
+        <th>نام فروشگاه</th>
+        <th>وضعیت فروشگاه</th>
+        <th>توضیحات</th>
+        <th>آدرس</th>
+        <th>تلفن</th>
+        <th>اقدامات</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                 
+                <td>@item.User.Phonenumber</td>
+                <td>@item.StoreName</td>
+                
+                @{
+                    if (item.StoreStatus == StoreStatus.None)
+                    {
+                        <td><span class="bg bg-secondary">@item.StoreStatus.ConvertStatus(item.StoreStatus)</span></td>
+                    }
+                    else if (item.StoreStatus == StoreStatus.Confirmed)
+                    {
+                        <td><span class="bg bg-success">@item.StoreStatus.ConvertStatus(item.StoreStatus)</span></td>
+                    }
+                    else
+                    {
+                        <td><span class="bg bg-danger">@item.StoreStatus.ConvertStatus(item.StoreStatus)</span></td>
+                    }
+                }
+                <td>@item.Description</td>
+                <td>@item.Address</td>
+                <td>@item.Telephone</td>
+                <td>
+                    <a href="@Url.Action()"><button class="btn  btn-warning">unmarked</button></a>
+                    <a href="@Url.Action("DocList","Admin",new{id=@item.UserId})"><button class="btn  btn-warning">مدارک</button></a>
+                    @{
+                        if (item.StoreStatus == StoreStatus.Confirmed)
+                        {
+                            <a href="@Url.Action()})"><button class="btn btn-danger">مسدود</button></a>
+                        }
+                        else if (item.StoreStatus == StoreStatus.Rejected)
+                        {
+                            <a href="@Url.Action()"><button class="btn btn-success">فعال</button></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action()"><button class="btn btn-danger">مسدود</button></a>
+                            <a href="@Url.Action()"><button class="btn btn-success">فعال</button></a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

@@ -1,0 +1,43 @@
+﻿@using DigiShop.CoreBussiness.EfCoreDomains.Documents
+@model List<DigiShop.CoreBussiness.EfCoreDomains.Documents.Document>
+<table class="table table-bordered table-hover   table-dark" id="mytable">
+    <thead>
+    <tr>
+        <th>ادرس</th>
+        <th>شماره منزل</th>
+        <th>کد ملی</th>
+        <th>عکس مدارک</th>
+        <th>وضعیت</th>
+        <th>اقدامات</th>
+    </tr>
+    </thead>
+    <a class="btn btn-primary" href="@Url.Action("DashBoard","Admin")">برگشت</a>
+    <tbody>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Address</td>
+                <td>@item.Homephone</td>
+                <td>@item.NationalCode</td>
+                <td>@await Component.InvokeAsync("ImageDocComponent", item.id)</td>
+                @{
+                    if (item.AuthStatus == AuthStatus.None)
+                    {
+                        <td><span class="bg bg-secondary">@item.AuthStatus.ConvertStatus(item.AuthStatus)</span></td>
+                    }
+                    else if (item.AuthStatus == AuthStatus.Accepted)
+                    {
+                        <td><span class="bg bg-success">@item.AuthStatus.ConvertStatus(item.AuthStatus)</span></td>
+                    }
+                    else
+                    {
+                        <td><span class="bg bg-danger">@item.AuthStatus.ConvertStatus(item.AuthStatus)</span></td>
+                    }
+                }
+                <td><a class="btn btn-primary" href="@Url.Action("DocDetails","Admin",new{id=item.id})">جزییات</a></td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

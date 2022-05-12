@@ -1,0 +1,39 @@
+﻿@model DigiShop.ViewModels.Sellers.VerifyOtpViewModel
+<link rel="stylesheet" href="~/css/AuthForm.css">
+<title>@ViewData["Title"]احراز هویت فروشگاه</title>
+<link rel="stylesheet" href="~/css/Account.css">
+@{
+    Layout = "AuthAccount";
+}
+<body class="bodycolor">
+
+
+<card>
+    <img src="~/Images/Sites/DigiShop.png" class="img-responsive logo" style="padding-right: 75px;" alt="دیجی شاپ">
+    <div class="card card-header bodycolor">
+        <h1 class="titleStyle"> DigiShop</h1>
+    </div>
+    <div class="card card-body">
+        @{
+            if (!String.IsNullOrEmpty(Model.email))
+            {
+                <span class="alert alert-primary">@Model.email</span>
+            }
+        }
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="VerifyEmailCode" asp-controller="Seller" method="post">
+                    <div class="form-group">
+                        <input asp-for="code" class="form-control inputStyle" placeholder="کد ارسالی به ایمیل ... ">
+                        <span asp-validation-for="code" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="card vr-cardboard btncardStyle">
+                        <button class="btn btn-primary btncardStyle" type="submit" dir="rtl">ارسال</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</card>
+</body>

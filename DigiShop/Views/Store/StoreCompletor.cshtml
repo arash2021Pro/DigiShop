@@ -1,0 +1,85 @@
+﻿
+@model DigiKalaShop.ViewModels.Stores.StoreCompletorViewModel
+<link rel="stylesheet" href="~/css/AuthForm.css">
+<title>@ViewData["Title"]ثبت اطلاعات فروشگاه </title>
+<link rel="stylesheet" href="~/css/Account.css">
+@{
+    Layout = "ManualPannel";
+}
+@{
+    if (Model != null && !String.IsNullOrEmpty(Model.Message) && Model.IsCompleted)
+    {
+        <div class="alert alert-success hide">@Model.Message</div>
+    }
+    else if (Model != null && !String.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-danger hide">@Model.Message</div>
+    }
+}
+<script>
+  setTimeout(function() {
+     $(".hide").fadeIn();
+  },4000)
+</script>
+
+
+<body class="bodycolor">
+<card>
+ 
+   <div class="container-fluid">
+       <div class="row margin-top-50">
+           <div class="col-md-6 col-sm offset-4 col-sm-4 col-md offset-4 col-sm-4 col-sm offset-4 col-xl-offset-3 col-xl-5-offset-5 loginbox">
+                
+               <img src="~/Images/Sites/DigiShop.png" class="img-responsive logo" style="padding-right: 75px;" alt="دیجی شاپ">
+
+               <div class="card card-header bodycolor">
+                   <h1 class="titleStyle"> DigiShop</h1>
+               </div>
+
+               <div class="card card-body">
+                   <div class="row">
+                       <div class="col-md-12">
+                           <form asp-action="StoreCompletor" asp-controller="Store" method="post" enctype="multipart/form-data">
+                               <div class="form-group">
+                                   <input asp-for="Address" type="text" class="form-control inputStyle " placeholder="آدرس.... ">
+                                   <span asp-validation-for="Address" class="text-danger"></span>
+                               </div>
+                               <div class="form-group">
+                                   <input asp-for="Description" type="text" class="form-control inputStyle" placeholder=" توضیحات ....">
+                                   <span asp-validation-for="Description" class="text-danger"></span>
+                               </div>
+                               <div class="form-group">
+                                   <input asp-for="Mail" type="text" class="form-control inputStyle" placeholder="ایمیل ...">
+                                   <span asp-validation-for="Mail" class="text-danger"></span>
+                               </div>
+                               <div class="form-group">
+                                   <input asp-for="Telephone" type="text" class="form-control inputStyle" placeholder="تلفن ثابت ...">
+                                   <span asp-validation-for="Telephone" class="text-danger"></span>
+                               </div>
+                               <div class="form-group">
+                                   <input asp-for="StoreName" type="text" class="form-control inputStyle" placeholder="نام فروشگاه ...">
+                                   <span asp-validation-for="StoreName" class="text-danger"></span>
+                               </div>
+                               <div class="form-group">
+                                   <input asp-for="file" type="file" class="form-control inputStyle" placeholder="عکس ...">
+                                   <span asp-validation-for="file" class="text-danger"></span>
+                               </div>
+                               <div class="form-group">
+                                   <input asp-for="IsRuleAccepted" type="checkbox">
+                               </div>
+                               <br>
+                               <div class="card vr-cardboard btncardStyle">
+                                   <button class="btn btn-primary btncardStyle" type="submit" dir="rtl">ذخیره</button>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div> 
+    
+    
+   
+</card>
+</body>

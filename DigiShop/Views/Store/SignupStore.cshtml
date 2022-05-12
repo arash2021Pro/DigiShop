@@ -1,0 +1,68 @@
+﻿@model DigiKalaShop.ViewModels.Stores.SignupStoreViewModel
+<link rel="stylesheet" href="~/css/AuthForm.css">
+<title>@ViewData["Title"]ثبت درخواست فروشگاه </title>
+<link rel="stylesheet" href="~/css/Account.css">
+@{
+    Layout = "AuthAccount";
+}
+@{
+    if (Model != null && !String.IsNullOrEmpty(Model.Message) && Model.IsCompleted)
+    {
+        <div class="alert alert-success hide">@Model.Message</div>
+    }
+    else if (Model != null && !String.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-danger hide">@Model.Message</div>
+    }
+}
+<script>
+  setTimeout(function() {
+     $(".hide").fadeOut();
+  },4000)
+</script>
+
+<body class="bodycolor">
+<card>
+    <img src="~/Images/Sites/DigiShop.png" class="img-responsive logo" style="padding-right: 75px;" alt="دیجی شاپ">
+    <div class="card card-header bodycolor">
+        <h1 class="titleStyle"> DigiShop</h1>
+    </div>
+    
+    
+    
+    <div class="card card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="SignupStore" asp-controller="Store" method="post">
+                    <input asp-for="fixedrole" value="seller" type="hidden" class="form-control" placeholder="نقش ...">
+                    <div class="form-group">
+                        <input asp-for="Phonenumber" type="text" class="form-control inputStyle " placeholder="شماره همراه.... ">
+                        <span asp-validation-for="Phonenumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Password" type="text" class="form-control inputStyle" placeholder=" رمز عبور ....">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Mail" type="text" class="form-control inputStyle" placeholder="ایمیل ...">
+                        <span asp-validation-for="Mail" class="text-danger"></span>
+                    </div>
+                    <div class="row" style="padding-right: 16px">
+                  <p><input type="checkbox" asp-for="IsRuleAccepted" >به عنوان فروشنده قوانین را قبول دارم</p> 
+                    </div>
+                    <br>
+                    <div class="card vr-cardboard btncardStyle">
+                        <button class="btn btn-primary btncardStyle" type="submit" dir="rtl">ثبت درخواست</button>
+                        @{
+                            if (Model!= null && Model.IsCompleted)
+                            {
+                                <a href="@Url.Action("login","Account")" class="btn btnstyle" type="submit" dir="rtl">ورود</a>
+                            }
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</card>
+</body>

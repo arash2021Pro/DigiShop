@@ -1,0 +1,30 @@
+﻿
+@model List<DigiShop.CoreBussiness.EfCoreDomains.AccessPermissions.Permission>
+
+
+<div>
+<table class="table table-bordered table-hover  table-light table-bordered" id="myTable" >
+    <thead>
+    <tr>
+        <th>نام دسترسی</th>
+        <th>عملیات</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.permission</td>
+                <td>
+                    <a href="@Url.Action("ModifyPermission", "Manager", new {id = item.id})"><button class="btn btn-primary">اصلاح دسترسی</button></a>
+                    <a href="@Url.Action("BlockPermission", "Manager", new {id = item.id})"><button class="btn btn-primary">حذف</button></a>
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>
+</div>
+
+

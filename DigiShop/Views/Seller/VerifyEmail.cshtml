@@ -1,0 +1,42 @@
+﻿@model DigiShop.ViewModels.Sellers.VerifyEmailViewModel
+<link rel="stylesheet" href="~/css/AuthForm.css">
+<title>@ViewData["Title"]احراز هویت فروشنده</title>
+<link rel="stylesheet" href="~/css/Account.css">
+@{
+    Layout = "AuthAccount";
+}
+@{
+    if (Model != null && !String.IsNullOrEmpty(Model.Message) && !Model.IsCompleted)
+    {
+        <div class="alert alert-danger hide">@Model.Message</div>
+    }
+}
+<script>
+  setTimeout(function() {
+     $(".hide").fadeOut();
+  },1000)
+</script>
+<body class="bodycolor">
+<card>
+    <img src="~/Images/Sites/DigiShop.png" class="img-responsive logo" style="padding-right: 75px;" alt="دیجی شاپ">
+    <div class="card card-header bodycolor">
+        <h1 class="titleStyle"> DigiShop</h1>
+    </div>
+    <div class="card card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="VerifyEmail" asp-controller="Seller" method="post">
+                    <div class="form-group">
+                        <input asp-for="email" class="form-control inputStyle" placeholder="ایمیل .... ">
+                        <span asp-validation-for="email" class="text-danger"></span>
+                    </div>
+                    <br>
+                    <div class="card vr-cardboard btncardStyle">
+                        <button class="btn btn-primary btncardStyle" type="submit" dir="rtl">ارسال</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</card>
+</body>

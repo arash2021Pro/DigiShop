@@ -1,0 +1,64 @@
+﻿@model DigiKalaShop.ViewModels.Users.SignupViewModel
+<link rel="stylesheet" href="~/css/AuthForm.css">
+<title>@ViewData["Title"] ثبت نام در دیجی شاپ</title>
+<link rel="stylesheet" href="~/css/Account.css">
+@{
+    Layout = "AuthAccount";
+}
+@{
+    if (Model != null && !String.IsNullOrEmpty(Model.Message) && Model.IsCompleted)
+    {
+        <div class="alert alert-success hide">@Model.Message</div>
+    }
+    else if (Model != null && !String.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-danger hide">@Model.Message</div>
+    }
+}
+<script>
+  setTimeout(function() {
+     $(".hide").fadeOut();
+  },4000)
+</script>
+
+<body class="bodycolor">
+<card>
+    <img src="~/Images/Sites/DigiShop.png" class="img-responsive logo" style="padding-right: 75px;" alt="دیجی شاپ">
+    <div class="card card-header bodycolor">
+        <h1 class="titleStyle"> DigiShop</h1>
+    </div>
+    <div class="card card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form asp-action="Signup" asp-controller="Account" method="post">
+                    <input asp-for="role" value="user" type="hidden" class="form-control" placeholder="نقش ...">
+                    <div class="form-group">
+                        <input asp-for="Phonenumber" type="text" class="form-control inputStyle " placeholder="شماره همراه.... ">
+                        <span asp-validation-for="Phonenumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="Password" type="text" class="form-control inputStyle" placeholder=" رمز عبور ....">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="ConfirmedPassword" type="text" class="form-control inputStyle" placeholder="تکرار رمز عبور.... ">
+                        <span asp-validation-for="ConfirmedPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input asp-for="NationalCode" type="text" class="form-control inputStyle" placeholder="کد ملی ....">
+                        <span asp-validation-for="NationalCode" class="text-danger"></span>
+                    </div>
+                    <div class="row" style="padding-right: 16px">
+                        <a href="#" style="font-family:'B Sahar'" type="checkbox"> <input type="checkbox" asp-for="IsRulesAccepted"> قوانین را قبول دارم </a>
+                    </div>
+                    <br>
+                    <div class="card vr-cardboard btncardStyle">
+                        <button class="btn btn-primary btncardStyle" type="submit" dir="rtl">ثبت نام</button>
+                        <a href="@Url.Action("login","Account")" class="btn btnstyle" type="submit" dir="rtl">ورود</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</card>
+</body>

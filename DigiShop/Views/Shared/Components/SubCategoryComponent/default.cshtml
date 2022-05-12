@@ -1,0 +1,36 @@
+﻿@model List<DigiShop.CoreBussiness.EfCoreDomains.StoreCategories.StoreCategory>
+
+<div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1" style="margin-top: 50px">
+    @{
+        <a class="btn btn-primary" href="@Url.Action("AddCategory","Admin")">اضافه سازی دسته</a>
+      
+        for (int i = 0; i < Model.Count; i++)
+        {
+            
+            if (Model[i].ParentId == null)
+            {
+                <a href="@Url.Action("ModifyCategory","Admin",new{id=Model[i].id})"><i class="fa fa-edit sub-orange-link"></i></a>
+                <ul>
+                    <h2><li style="color: #6f42c1">@Model[i].CategoryName</li></h2>
+                     <a href="@Url.Action("AddChild","Admin",new{id=Model[i].id})"><i class="fa fa-plus-circle sub-green-link"></i></a>
+                </ul>
+            }
+            for (int s = 0 ; s < Model.Count;s++)
+            {
+                if (Model[s].ParentId == Model[i].id)
+                {
+                    <a href="@Url.Action("ModifyCategory","Admin",new{id=Model[s].id})"><i class="fa fa-edit sub-orange-link"></i></a>
+                    <ul>
+                        <h4><li>@Model[s].CategoryName</li></h4>
+                        <a href="@Url.Action("AddChild","Admin",new{id=Model[s].id})"><i class="fa fa-plus-circle sub-green-link"></i></a>
+                    </ul>
+                }
+                
+            }
+        }
+    }
+</div>
+
+
+
+

@@ -1,0 +1,63 @@
+﻿@model DigiKalaShop.ViewModels.Users.loginViewModel
+<link rel="stylesheet" href="~/css/AuthForm.css">
+<title>@ViewData["Title"]ورود به دیجی شاپ</title>
+<link rel="stylesheet" href="~/css/Account.css">
+@{
+    Layout = "AuthAccount";
+}
+
+
+    <body class="bodycolor">
+    <card>
+        <img src="~/Images/Sites/DigiShop.png" class="img-responsive logo" style="padding-right: 75px;" alt="دیجی شاپ">
+        <div class="card card-header bodycolor">
+            <h1 class="titleStyle"> DigiShop</h1>
+        </div>
+        
+        <div class="card card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <form asp-action="login" asp-controller="Account" method="post">
+                        <div class="form-group">
+                            <input asp-for="Phonenumber" class="form-control inputStyle" placeholder="شماره همراه.... ">
+                            <span asp-validation-for="Phonenumber" class="text-danger"></span>
+                        </div>
+    
+                        <div class="form-group">
+                            <input asp-for="Password" class="form-control inputStyle" placeholder=" رمز عبور ....">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+    
+                        <div class="row" style="padding-right: 16px">
+                            <a href="@Url.Action("forgotpass", "Account")" style="font-family:'B Sahar'"> فراموشی رمز عبور ؟</a>
+                        </div>
+    
+                        <div class="col-md-12">
+                            <dnt-captcha
+                                asp-captcha-generator-max="9000"
+                                asp-captcha-generator-min="1"
+                                asp-captcha-generator-language="Persian"
+                                asp-captcha-generator-display-mode="ShowDigits"
+                                asp-use-relative-urls="true"
+                                asp-placeholder="کد امنیتی"
+                                asp-validation-error-message="کد امنیتی را در کادر زیر وارد کنید"
+                                asp-font-name="Tahoma"
+                                asp-font-size="20"
+                                asp-fore-color="#333333"
+                                asp-back-color="#ccc"
+                                asp-text-box-class="text-box form-control inputStyle"
+                                asp-text-box-template="<div class='input-group'>{0}</div>"
+                                asp-validation-message-class="text-danger"
+                                asp-show-refresh-button="true"/>
+                        </div>
+                        <br>
+                        <div class="card vr-cardboard btncardStyle">
+                            <button class="btn btn-primary btncardStyle" type="submit" dir="rtl">ورود</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </card>
+    </body>
+

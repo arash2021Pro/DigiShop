@@ -1,0 +1,23 @@
+﻿
+<nav class="navbar navbar-expand-lg navbar-light nav" style="background-color:whitesmoke">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="navbar-nav">
+      
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"><span class="bg bg-light">زیر گروه</span></a>
+                <div class="dropdown-menu bg bg-light " aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item bg bg-light" href="@Url.Action("AddRole","Manager")">اضافه سازی نقش</a> <a class="dropdown-item" href="@Url.Action("ManageRole","Manager")">مدیریت نقش</a> <a class="dropdown-item" href="#"></a>
+                    <div class="dropdown-divider">
+                    </div> <a class="dropdown-item" href="#"></a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline" asp-action="ManageRoleAccess" method="get" asp-controller="Manager">
+            <input class="form-control mr-sm-2 btn-outline-light" type="text" name="searchvalue" placeholder="جست و جو ..."/>
+            <button class="btn btn-primary -2 my-sm-0" type="submit">
+                جست و جو
+            </button>
+        </form>
+    </div>
+</nav>
+

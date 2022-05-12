@@ -1,0 +1,56 @@
+﻿
+@using DigiShop.CoreBussiness.EfCoreDomains.Users
+@model List<DigiShop.CoreBussiness.EfCoreDomains.Users.User>
+
+
+<table class="table table-bordered table-hover   table-dark" id="mytable">
+    <thead>
+    <tr>
+        <th>شماره موبایل</th>
+        <th>وضعیت</th>
+        <th>اقدامات</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>@item.Phonenumber</td>
+                @{
+                    if (item.UserStatus == UserStatus.None)
+                    {
+                        <td><span class="bg bg-secondary">@item.UserStatus</span></td>
+                    }
+                    else if (item.UserStatus == UserStatus.Active)
+                    {
+                        <td><span class="bg bg-success">@item.UserStatus</span></td>
+                    }
+                    else
+                    {
+                        <td><span class="bg bg-danger">@item.UserStatus</span></td>
+                    }
+                }
+                <td>
+                    @{
+                        if (item.UserStatus == UserStatus.Active)
+                        {
+                            <a href="@Url.Action()})"><button class="btn btn-danger">مسدود</button></a>
+                        }
+                        else if (item.UserStatus == UserStatus.Inactive)
+                        {
+                            <a href="@Url.Action()"><button class="btn btn-success">فعال</button></a>
+                        }
+                        else
+                        {
+                            <a href="@Url.Action()"><button class="btn btn-danger">مسدود</button></a>
+                            <a href="@Url.Action()"><button class="btn btn-success">فعال</button></a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

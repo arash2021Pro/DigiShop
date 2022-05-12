@@ -1,0 +1,19 @@
+﻿.bodycolor{
+    background-color: white;
+}
+.titleStyle{
+    padding-left: 87px;
+    color: orangered;
+}
+.inputStyle{
+    border-radius: 45px;
+    text-align: center;
+    border-color: orangered;
+}
+.btncardStyle{
+    border-radius: 35px;
+}
+.btnstyle{
+    border-radius: 35px;
+    background-color: orangered;
+}

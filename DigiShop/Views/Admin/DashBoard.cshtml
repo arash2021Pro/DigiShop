@@ -1,0 +1,20 @@
+﻿@using DigiShop.ViewModels.Admin
+@{
+    Layout = "ManualPannel";
+}
+@model NotifiyViewModel
+@{
+    if (Model != null && !String.IsNullOrEmpty(Model.Message) && Model.IsCompleted)
+    {
+        <div class="alert alert-success hide">@Model.Message</div>
+    }
+    else if (Model != null && !String.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-danger hide">@Model.Message</div>
+    }
+}
+<script>
+  setTimeout(function() {
+     $(".hide").fadeOut();
+  },4000)
+</script>
